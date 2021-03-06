@@ -43,7 +43,7 @@ public class Vector<V extends Double> extends ArrayList<V> {
 
     public static ArrayList<Vector<Double>> createList(double[] l, int d) {
         ArrayList<Vector<Double>> out = new ArrayList<>();
-        for (int i = 0; i < l.length - d; i++) {
+        for (int i = 0; i <= l.length - d; i += d) {
             Vector<Double> v = new Vector<>();
             for (int j = 0; j < d; j++) {
                 v.add(l[i + j]);
@@ -51,5 +51,13 @@ public class Vector<V extends Double> extends ArrayList<V> {
             out.add(v);
         }
         return out;
+    }
+
+    public boolean equals(Vector<V> other) {
+        if (this.size() != other.size()) return false;
+        for (int i = 0; i < size(); i++) {
+            if (!get(i).equals(other.get(i))) return false;
+        }
+        return true;
     }
 }

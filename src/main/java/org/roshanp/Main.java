@@ -9,19 +9,24 @@ public class Main {
 
     public static void main(String[] args) {
 
-        ArrayList<Vector<Double>> list = Vector.createList(new double[]{0,0,1,1,0,1,1,0,100,100,101,101,100,101,101,100}, 2);
-        Cluster<Vector<Double>> c = new Cluster<>(new Vector<>(new double[]{1000,1000}));
-        c.addAll(list);
+        ArrayList<Vector<Double>> list = Vector.createList(new double[]{0, 0, 1, 1, 0, 1, 1, 0, 100, 100, 101, 101, 100, 101, 101, 100, 60, 60, 60, 61, 61, 60, 61, 61}, 2);
+        Cluster<Vector<Double>> c = new Cluster<>(new Vector<>(new double[]{0, 101, 0, 101}));
+        for (Vector<Double> v : list) {
+            c.safeAdd(v);
+        }
 
-        System.out.println(c.size());
+        System.out.println(c);
+        System.out.println(c.getCenter());
+        System.out.println(c.getBounds());
 
-        ArrayList<Cluster<Vector<Double>>> clusters = Cluster.cluster(c, 2);
+        System.out.println("---------------");
+
+        ArrayList<Cluster<Vector<Double>>> clusters = Cluster.cluster(c, 3);
+
+        System.out.println("----");
+        assert clusters != null;
         for (Cluster<Vector<Double>> cluster : clusters) {
-            System.out.println("NEW CLUSTER");
-            System.out.println(cluster.size());
-            for (Vector<Double> v : cluster) {
-                System.out.println(v);
-            }
+            System.out.println(cluster);
         }
     }
 }
