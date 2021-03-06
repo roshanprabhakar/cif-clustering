@@ -71,12 +71,15 @@ public class Cluster<P extends Vector<Double>> extends ArrayList<P> {
         recalculateBounds();
     }
 
+    //TODO safety lock to check if safeAdd been called at least once
     public static ArrayList<Cluster<Vector<Double>>> cluster(Cluster<Vector<Double>> c, int n) {
+
+        //safety
+        if (c.size() != 0) c.safeAdd(c.remove(0));
 
         ArrayList<Cluster<Vector<Double>>> clusters = new ArrayList<>();
         if (n == 0) {
             return null;
-
         } else if (n == 1) {
             clusters.add(c);
 
@@ -153,7 +156,6 @@ public class Cluster<P extends Vector<Double>> extends ArrayList<P> {
             centers = getCenters(clusters);
             iterA = false;
 
-            System.out.println(Arrays.toString(centers));
         }
 
         //move all points to new cluster locations
