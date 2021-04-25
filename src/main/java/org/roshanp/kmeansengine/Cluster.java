@@ -1,7 +1,6 @@
 package org.roshanp.kmeansengine;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Cluster<P extends Vector<Double>> extends ArrayList<P> {
 
@@ -190,7 +189,7 @@ public class Cluster<P extends Vector<Double>> extends ArrayList<P> {
         return closestCluster;
     }
 
-    private static Vector<Double>[] getCenters(ArrayList<Cluster<Vector<Double>>> clusters) {
+    private static Vector[] getCenters(ArrayList<Cluster<Vector<Double>>> clusters) {
         Vector[] centers = new Vector[clusters.size()];
         for (int i = 0; i < clusters.size(); i++) {
             centers[i] = clusters.get(i).center;
